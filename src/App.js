@@ -1,6 +1,15 @@
+import Navbar from "./components/Navbar";
 
 function App() {
-  return <h1>Hello World</h1>
+    let myName = 'Monti'
+    return (
+        <>
+            <Navbar name = {myName} city = "Newport News"/>
+            <div className="container">
+                <h1>Hello {myName}</h1>
+            </div>
+        </>
+        );
 }
 
 export default App;
