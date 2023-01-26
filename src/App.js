@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Routes, Route } from 'react-router-dom'
 import ButtonDisplay from "./components/ButtonDisplay";
+import Home from "./components/Home"
+import Register from "./components/Register";
 import Navbar from "./components/Navbar";
 // import RacerDisplay from "./components/RacerDisplay";
 import RacerDisplayClass from "./components/RacerDisplayClass";
@@ -22,9 +24,11 @@ function App(props){
             <Navbar city={myCity} name={myName} updateUser={updateUserInfo} />
             <div className="container">
                 <Routes>
+                    <Route path="/" element={<Home />} />
                     <Route path="/" element={<ButtonDisplay myName={myName} />} />
                     {/* <Route path="/standings" element={<RacerDisplay />} /> */}
                     <Route path="/standings" element={<RacerDisplayClass />} />
+                    <Route path="/register" element={<Register />} />
                 </Routes>
             </div>
         </>
