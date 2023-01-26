@@ -1,33 +1,34 @@
-import {useState} from "react";
-import Button from "./components/Button";
+import React, { useState } from "react";
+import { Routes, Route } from 'react-router-dom'
+import ButtonDisplay from "./components/ButtonDisplay";
 import Navbar from "./components/Navbar";
+// import RacerDisplay from "./components/RacerDisplay";
+import RacerDisplayClass from "./components/RacerDisplayClass";
 
 
-function App() {
-    let myName = 'Monti'
-    let buttons = [
-        {color: 'primary', step: 1},
-        {color: 'secondary', step: 10},
-        {color: 'success', step: 100},
-        {color: 'danger', step: 1000},
-    ]
+function App(props){
+    // Setting state variables (these variables will preserve their value across function calls i.e. new renders of component)    
+    const [myName, setMyName] = useState('');
+    const [myCity, setMyCity] = useState('');
 
-    const [count, setCount] = useState(0);
-
-    function handleClick(step){
-      setCount(count + step)
+    // Function that will update myName and myCity variables with whatever strings are passed into it
+    function updateUserInfo(username, usercity){
+        setMyName(username);
+        setMyCity(usercity);
     };
 
     return (
         <>
-            <Navbar name = {myName} city = "Newport News"/>
+            <Navbar city={myCity} name={myName} updateUser={updateUserInfo} />
             <div className="container">
-                <h1>Hello {myName}, Count {count}</h1>
-                {buttons.map((button, idx) => <Button color={button.color}
-                step={button.step} key={idx} handleClick={handleClick}/>)}
+                <Routes>
+                    <Route path="/" element={<ButtonDisplay myName={myName} />} />
+                    {/* <Route path="/standings" element={<RacerDisplay />} /> */}
+                    <Route path="/standings" element={<RacerDisplayClass />} />
+                </Routes>
             </div>
         </>
-        );
+    );
 }
 
 export default App;
